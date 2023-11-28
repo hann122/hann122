@@ -45,8 +45,7 @@ vtp mode client
 vtp password 123@abc
 
 int f0/21
- switchport access vlan 100
- switchport mode access
+switchport mode trunk
 
 
 - Cau hinh gan port vao vlan tren switch F1
