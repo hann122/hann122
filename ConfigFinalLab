@@ -1,12 +1,15 @@
-- Switch core
+### CAU HINH SWITCH CORE
+- Cau hinh VTP mode server
 vtp domain btec.vn
 vtp mode server
 vtp password 123@abc
 
+- Cau hinh cong trunk den 3 switch F1, F2, F3
 interface range f0/1-3
 switchport trunk encapsulation dot1q
 switchport mode trunk
 
+- Cau hinh interface vlan
 interface vlan 10
 ip address 192.168.10.1 255.255.255.0
 interface vlan 20
@@ -20,8 +23,10 @@ ip address 192.168.50.1 255.255.255.0
 interface vlan 100
 ip address 192.168.100.1 255.255.255.0
 
+- Bat routing
 ip routing
 
+- Cau hinh DHCP Relay 
 interface Vlan10
 ip helper-address 192.168.100.7
 interface Vlan20
@@ -33,12 +38,16 @@ ip helper-address 192.168.100.7
 interface Vlan50
 ip helper-address 192.168.100.7
 
+- Cau hinh port noi den Border Router
 int g0/1
 no switchport
 ip address 10.10.10.1 255.255.255.0
 
+- Cau hinh Default Route
 ip route 0.0.0.0 0.0.0.0 10.10.10.2
 
+##########################################################################################################################
+### Cau hinh Switch F1, F2, F3
 - Switch F1, F2, F3 cau hinh VTP mode client va set cong trunk 
 vtp domain btec.vn
 vtp mode client
@@ -46,7 +55,6 @@ vtp password 123@abc
 
 int f0/21
 switchport mode trunk
-
 
 - Cau hinh gan port vao vlan tren switch F1
 interface range f0/1-6
@@ -72,9 +80,9 @@ switchport access vlan 10
 interface range f0/16-20
 switchport mode access
 switchport access vlan 30
-
-- Cau hinh Border Router
-
+##########################################################################################################################
+### Cau hinh Border Router
+- Dat IP cho interface
 int g0/0
 ip address 10.10.10.2 255.255.255.0
 no shut
@@ -82,10 +90,22 @@ int g0/1
 ip address 1.1.1.1 255.255.255.252
 no shut
 
+- Cau hinh Static route va Default Route
 ip route 192.168.0.0 255.255.0.0 10.10.10.1 
 ip route 0.0.0.0 0.0.0.0 1.1.1.2
 
-- Cau hinh ISP Router
+- Cau hinh NAT tren Border
+int g0/0
+ip nat inside
+int g0/1
+ip nat outside
+ip nat inside source static tcp 192.168.100.5 80 1.1.1.1 80
+ip nat inside source static tcp 192.168.100.5 443 1.1.1.1 443
+
+--> Kiem tra NAT bang cach tu Public PC , dung Browser truy cap 1.1.1.1
+##########################################################################################################################
+### Cau hinh ISP Router
+- Dat IP cho interface
 interface GigabitEthernet0/0
  ip address 1.1.1.2 255.255.255.252
 no shut
@@ -94,17 +114,10 @@ interface GigabitEthernet0/1
  ip address 8.8.8.1 255.255.255.0
 no shut
 
+- Cau hinh Default Route
 ip route 0.0.0.0 0.0.0.0 1.1.1.1
 
-- Cau hinh NAT tren Border
-
-int g0/0
-ip nat inside
-int g0/1
-ip nat outside
-ip nat inside source static tcp 192.168.100.5 80 1.1.1.1 80
-ip nat inside source static tcp 192.168.100.5 443 1.1.1.1 443
---> Kiem tra NAT bang cach tu Public PC , dung Browser truy cap 1.1.1.1
+##########################################################################################################################
 
 --> Tao ACLs deny Guest ping Staff
 access-list 110 deny ip 10.255.30.0 0.0.0.127 10.255.10.0 0.0.1.255
