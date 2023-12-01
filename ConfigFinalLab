@@ -119,11 +119,11 @@ ip route 0.0.0.0 0.0.0.0 1.1.1.1
 
 ##########################################################################################################################
 
---> Tao ACLs deny Guest ping Staff
-access-list 110 deny ip 192.168.30.0 0.0.0.127 10.255.10.0 0.0.1.255
+--> Tao ACLs deny Student ping Teacher
+access-list 110 deny ip 192.168.10.0 0.0.0.255 192.168.20.0 0.0.0.255
 access-list 110 permit ip any any
-->Apply ACLs vao int vlan 30
-interface Vlan30
+->Apply ACLs vao int vlan 10
+interface Vlan10
 ip access-group 110 in
 
 --> Tao ACLs deny Student vao Facebook
