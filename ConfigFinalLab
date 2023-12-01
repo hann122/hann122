@@ -46,6 +46,20 @@ ip address 10.10.10.1 255.255.255.0
 - Cau hinh Default Route
 ip route 0.0.0.0 0.0.0.0 10.10.10.2
 
+- Cau hinh Access List
+--> Tao ACLs deny Student ping Teacher
+access-list 110 deny ip 192.168.10.0 0.0.0.255 192.168.20.0 0.0.0.255
+access-list 110 permit ip any any
+->Apply ACLs vao int vlan 10
+interface Vlan10
+ip access-group 110 in
+
+--> Tao ACLs deny Student vao Facebook
+access-list 120 deny ip 192.168.10.0 0.0.0.255 8.8.8.9 0.0.0.0
+access-list 120 permit ip any any
+->Apply ACLs vao int vlan 10
+interface Vlan10
+ip access-group 120 in
 ##########################################################################################################################
 ### Cau hinh Switch F1, F2, F3
 - Switch F1, F2, F3 cau hinh VTP mode client va set cong trunk 
@@ -119,18 +133,5 @@ ip route 0.0.0.0 0.0.0.0 1.1.1.1
 
 ##########################################################################################################################
 
---> Tao ACLs deny Student ping Teacher
-access-list 110 deny ip 192.168.10.0 0.0.0.255 192.168.20.0 0.0.0.255
-access-list 110 permit ip any any
-->Apply ACLs vao int vlan 10
-interface Vlan10
-ip access-group 110 in
-
---> Tao ACLs deny Student vao Facebook
-access-list 120 deny ip 192.168.10.0 0.0.0.255 8.8.8.9 0.0.0.0
-access-list 120 permit ip any any
-->Apply ACLs vao int vlan 10
-interface Vlan10
-ip access-group 120 in
 
 
