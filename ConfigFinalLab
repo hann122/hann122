@@ -127,10 +127,10 @@ interface Vlan10
 ip access-group 110 in
 
 --> Tao ACLs deny Student vao Facebook
-access-list 120 deny ip 192.168.20.0 0.0.3.255 8.8.8.9 0.0.0.0
+access-list 120 deny ip 192.168.10.0 0.0.0.255 8.8.8.9 0.0.0.0
 access-list 120 permit ip any any
-->Apply ACLs vao int vlan 30
-interface Vlan20
+->Apply ACLs vao int vlan 10
+interface Vlan10
 ip access-group 120 in
 
 
