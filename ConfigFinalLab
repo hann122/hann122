@@ -38,6 +38,11 @@ ip helper-address 192.168.100.7
 interface Vlan50
 ip helper-address 192.168.100.7
 
+- Cau hinh port noi den Switch cum Server
+int f0/21
+switchport mode access
+switchport access vlan 100
+
 - Cau hinh port noi den Border Router
 int g0/1
 no switchport
