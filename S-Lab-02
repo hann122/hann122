@@ -31,6 +31,7 @@ exploit
 meterpreter >
 meterpreter > sysinfo
 meterpreter > shell
+meterpreter > hashdump
 
 
 
