@@ -10,3 +10,14 @@ pdf2john flag.pdf > pdf.hash
 john --wordlist=/usr/share/wordlists/rockyou.txt pdf.hash
 
 ###################
+
+Msf
+- Take snapshot of Win7 VM
+- Scan
+nmap -v -sn 192.168.145.0/24 | grep -v "down"
+sudo nmap -sV -sC -O 192.168.145.134
+nmap –script smb-vuln* -p 445
+
+- Exploit using msfconsole
+msfconsole
+
