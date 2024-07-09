@@ -1,0 +1,12 @@
+#################
+Crack:
+sudo gunzip /usr/share/wordlists/rockyou.txt.gz
+ls -alh /usr/share/wordlists/rockyou.txt
+
+zip2john flag.zip > zip.hash
+john --wordlist=/usr/share/wordlists/rockyou.txt zip.hash
+
+pdf2john flag.pdf > pdf.hash
+john --wordlist=/usr/share/wordlists/rockyou.txt pdf.hash
+
+###################
