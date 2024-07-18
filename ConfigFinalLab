@@ -9,6 +9,20 @@ interface range f0/1-3
 switchport trunk encapsulation dot1q
 switchport mode trunk
 
+- Cau hinh vlan
+vlan 10
+name Student
+vlan 20
+name Teacher
+vlan 30
+name Staff
+vlan 40
+name Manager
+vlan 50
+name Admin
+vlan 100
+name Server
+
 - Cau hinh interface vlan
 interface vlan 10
 ip address 192.168.10.1 255.255.255.0
