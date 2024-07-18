@@ -93,13 +93,13 @@ int f0/21
 switchport mode trunk
 
 - Cau hinh gan port vao vlan tren switch F1
-interface range f0/1-6
+interface range f0/1-4
 switchport mode access
 switchport access vlan 10
-interface range f0/7-10
+interface range f0/5-9
 switchport mode access
 switchport access vlan 20
-interface range f0/11-14
+interface range f0/10-14
 switchport mode access
 switchport access vlan 30
 interface range f0/15-17
