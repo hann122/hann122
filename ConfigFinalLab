@@ -135,8 +135,8 @@ int g0/0
 ip nat inside
 int g0/1
 ip nat outside
-ip nat inside source static tcp 192.168.100.5 80 1.1.1.1 80
-ip nat inside source static tcp 192.168.100.5 443 1.1.1.1 443
+ip nat inside source static tcp 192.168.100.11 80 1.1.1.1 80
+ip nat inside source static tcp 192.168.100.11 443 1.1.1.1 443
 
 --> Kiem tra NAT bang cach tu Public PC , dung Browser truy cap 1.1.1.1
 ##########################################################################################################################
