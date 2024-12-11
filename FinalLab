@@ -48,7 +48,7 @@ interface Vlan50
 ip helper-address 192.168.100.4
 
 - Cau hinh port noi den Switch cum Server
-int f0/21
+int f0/4
 switchport mode access
 switchport access vlan 100
 
