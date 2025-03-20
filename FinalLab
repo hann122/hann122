@@ -37,15 +37,15 @@ ip routing
 
 - Cau hinh DHCP Relay 
 interface Vlan10
-ip helper-address 192.168.100.4
+ip helper-address 192.168.100.13
 interface Vlan20
-ip helper-address 192.168.100.4
+ip helper-address 192.168.100.13
 interface Vlan30
-ip helper-address 192.168.100.4
+ip helper-address 192.168.100.13
 interface Vlan40
-ip helper-address 192.168.100.4
+ip helper-address 192.168.100.13
 interface Vlan50
-ip helper-address 192.168.100.4
+ip helper-address 192.168.100.13
 
 - Cau hinh port noi den Switch cum Server
 int f0/4
