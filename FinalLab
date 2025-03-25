@@ -79,6 +79,17 @@ interface Vlan10
 ip access-group 120 in
 ##########################################################################################################################
 ### CAU HINH Switch F1, F2, F3
+- Cau hinh VLAN
+vlan 10
+name Student
+vlan 20
+name Teacher
+vlan 30
+name Staff
+vlan 40
+name Manager
+vlan 50
+name Admin
 - Cau hinh port trunk noi vao SWITCH CORE
 int f0/21
 switchport mode trunk
