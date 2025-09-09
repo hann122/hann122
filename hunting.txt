@@ -1,0 +1,8 @@
+1. FIM
+
+NOT syscheck.path: *driverstore* AND NOT syscheck.path: *Winlogon* AND NOT syscheck.path: *\\windows\\system32*  AND NOT syscheck.path: *\\windows\\syswow64*
+
+2. ELK
+
+message : *whoami* or message : *blood* or message : *peas* or message : *adexplorer* 
+

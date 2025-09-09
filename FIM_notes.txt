@@ -1,0 +1,76 @@
+1. Create new group Exchange and config group rule
+2. Change checking frequency:
+/var/ossec/etc/ossec.conf
+
+<!-- File integrity monitoring -->
+  <syscheck>
+    <disabled>no</disabled>
+
+    <!-- Frequency that syscheck is executed default every 12 hours -->
+    <frequency>60</frequency>
+
+    <scan_on_start>yes</scan_on_start>
+
+    <!-- Generate alert when new file detected -->
+    <alert_new_files>yes</alert_new_files>
+
+3.Check rule
+- Default : /var/ossec/ruleset/rules/
+- Custom : /var/ossec/etc/rules
+
+File integrity default in /var/ossec/ruleset/rules/0015-ossec_rules.xml
+
+4. Tuning rule
+- Finding Rule ID need to ignore
+cd /var/ossec/logs/alerts 
+cat alerts.log | grep "Rule:" | sort -n | uniq -c
+
+- Add to /var/ossec/etc/rules/local_rules.xml
+
+<group name="suppress_multiple_rules">
+  <rule id="60137" level="0" overwrite="yes">
+    <description>IGNORE: "Windows User Logoff" suppressed</description>
+  </rule>
+  <rule id="60106" level="0" overwrite="yes">
+    <description>IGNORE: "Windows logon success" suppressed</description>
+  </rule>
+  <rule id="60200" level="0" overwrite="yes">
+    <description>IGNORE: "IIS NetworkCleartext logon success" suppressed</description>
+  </rule>
+  <rule id="60642" level="0" overwrite="yes">
+    <description>IGNORE: "Software protection service scheduled successfully." suppressed</description>
+  </rule>
+</group>
+
+5. Edit agent config
+
+
+    <directories realtime="yes">%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\Startup</directories>
+    <directories realtime="yes">C:\inetpub\wwwroot\aspnet_client</directories>
+
+    <ignore>%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\Startup\desktop.ini</ignore>
+    <ignore>c:\windows\system32\tasks\microsoft\windows</ignore>
+	
+6. Rule search
+
+NOT syscheck.path: *driverstore* AND NOT syscheck.path: *Winlogon* AND NOT syscheck.path: *\\windows\\system32*  AND NOT syscheck.path: *\\windows\\syswow64*
+	
+
+------------------------------------------------
+
+ELK alert rule
+
+vim /etc/kibana/kibana.yml
+xpack.encryptedSavedObjects.encryptionKey: "yCoQ8HLNn+bvCkNHsRUBaVLrF6XDxSLK7ilI9tyOIJ4="
+systemctl restart kibana
+
+------------------------------------------------
+
+1. Install Sysmon, enable Powershell, Filebeat
+2. Push syslog, access log to ELK
+3. FIM
+4. ModSec for IIS
+
+
+
+
