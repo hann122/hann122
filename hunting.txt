@@ -5,4 +5,33 @@ NOT syscheck.path: *driverstore* AND NOT syscheck.path: *Winlogon* AND NOT sysch
 2. ELK
 
 message : *whoami* or message : *blood* or message : *peas* or message : *adexplorer* 
+event.code : 11 -> File created
+event.code : 1  -> Process create
+event.code : 3  --> Network connection detected
+
+
+
+Network connection detected:
+RuleName: -
+UtcTime: 2025-09-09 07:28:59.193
+ProcessGuid: {fe58802f-d73b-68bf-9701-000000000e00}
+ProcessId: 3404
+Image: C:\Windows\Temp\agent.exe
+User: IIS APPPOOL\DefaultAppPool
+Protocol: tcp
+Initiated: true
+SourceIsIpv6: false
+SourceIp: 10.0.2.15
+SourceHostname: castelblack.north.sevenkingdoms.local
+SourcePort: 50159
+SourcePortName: -
+DestinationIsIpv6: false
+DestinationIp: 10.8.0.9
+DestinationHostname: -
+DestinationPort: 11601
+DestinationPortName: -
+
+
+
+
 
