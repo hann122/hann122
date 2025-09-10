@@ -68,7 +68,17 @@ process.executable:rundll32.exe AND process.args:(url.dll OR ieframe.dll OR shdo
 event.id:1 AND ((process.executable:schtasks.exe AND process.args:create) OR process.executable:at.exe)
 
 - Account discovery
-winlog.event_id:(4798 OR 4799) AND winlog.event_data.CallerProcessName:(net OR net1) AND winlog.computer_name: MSEDGEWIN10
+winlog.event_id:(4798 OR 4799) AND winlog.event_data.CallerProcessName:(net OR net1) AND winlog.computer_name: *
+
+- Persistence through Accessibility Features
+winlog.event_data.Image:("C:\Windows\System32\osk.exe" OR "C:\Windows\System32\sethc.exe" OR "C:\Windows\System32\utilman.exe" OR "C:\Windows\System32\magnify.exe" OR "C:\Windows\System32\narrator.exe" OR "C:\Windows\System32\displayswitch.exe" OR "C:\Windows\System32\atbroker.exe") AND winlog.event_data.Description:"Windows Command Processor" AND winlog.event_data.User:"NT AUTHORITY\SYSTEM" AND winlog.computer_name: *
+- Privilege Escalation through Scheduled tasks
+winlog.event_id:1 AND winlog.event_data.Image:"C:\Windows\system32\schtasks.exe" AND winlog.event_data.CommandLine:("C:\users" OR "C:\programdata" OR "C:\Windows\Temp")
+
+- RDP through SSH tunnel
+winlog.event_id:4624 AND winlog.event_data.LogonType:10 AND winlog.event_data.IpAddress:"127.0.0.1" AND winlog.computer_name: *
+
+
 
 
 
