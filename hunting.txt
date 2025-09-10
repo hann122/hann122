@@ -54,6 +54,8 @@ winlog.event_data.ScriptBlockText:(*hctac* OR *kearb* OR *dnammoc* OR *ekovn* OR
 process.name:rundll32.exe AND (process.args:pcwutl.dll AND process.args:LaunchApplication)
 - UAC bypass
 event.id:7 AND (process.name:cliconfg.exe AND file.path:NTWDBLIB.dll)
+event.id:13 AND registry_key_path:"shell\\runas\\command\\isolatedCommand"
+
 - RDP Settings tampering
 event.id:1 AND (process.name:netsh.exe AND (process.args:localport=3389 AND process.args:action=allow))
 - DC Sync
@@ -62,7 +64,11 @@ event.id:4662 AND NOT (user.name:*$ OR user.name:AUTHORITY OR user.name:Window) 
 event.id:4648 AND process.executable:WMIC.exe
 - LOLBAS openurl
 process.executable:rundll32.exe AND process.args:(url.dll OR ieframe.dll OR shdocvw.dll)
+- Scheduled task
+event.id:1 AND ((process.executable:schtasks.exe AND process.args:create) OR process.executable:at.exe)
 
+- Account discovery
+winlog.event_id:(4798 OR 4799) AND winlog.event_data.CallerProcessName:(net OR net1) AND winlog.computer_name: MSEDGEWIN10
 
 
 
