@@ -4,7 +4,7 @@ NOT syscheck.path: *driverstore* AND NOT syscheck.path: *Winlogon* AND NOT sysch
 
 2. ELK
 
-message : *whoami* or message : *blood* or message : *peas* or message : *adexplorer* 
+message : *whoami* or message : *blood* or message : *peas* or message : *adexplorer* or message : *impacket*
 event.code : 11 -> File created
 event.code : 1  -> Process create
 event.code : 3  --> Network connection detected
@@ -30,6 +30,7 @@ DestinationIp: 10.8.0.9
 DestinationHostname: -
 DestinationPort: 11601
 DestinationPortName: -
+
 
 
 
